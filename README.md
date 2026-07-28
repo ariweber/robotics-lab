@@ -87,3 +87,14 @@ see "one spot left" and both register.
    ```
 
    The server runs on `http://localhost:3000` (or the port set in `PORT`).
+
+## Running with Docker
+
+```bash
+docker build -t robotics-lab .
+docker run --env-file .env -p 3000:3000 robotics-lab
+```
+
+There is no docker-compose file on purpose: both databases are cloud services
+(MongoDB Atlas + Supabase), so there are no local database containers to
+orchestrate — the server container is the whole deployment.
