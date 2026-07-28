@@ -1,0 +1,25 @@
+{
+  "name": "robotics-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariweber/robotics-lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ariweber/robotics-lab/issues"
+  },
+  "homepage": "https://github.com/ariweber/robotics-lab#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.110.9",
+    "dotenv": "^17.4.2"
+  }
+}
