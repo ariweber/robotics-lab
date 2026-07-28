@@ -12,4 +12,4 @@ try {
   console.log(error.message)
 }
 
-export const db = client.db("users")
+export const db = client.db("project")

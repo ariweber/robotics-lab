@@ -1,6 +1,6 @@
-import Router from 'express';
+import express from 'express';
 
-const router = Router()
+const router = express.Router()
 
 router.get("/:usersID", async (req, res) => {
   res.json({})
