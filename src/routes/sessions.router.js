@@ -8,7 +8,7 @@ router.post("/:sessionId/register", async (req, res)=>{
 
 
 
-router.get("/sessions/:sessionId", async (req, res)=>{
+router.get("/:sessionId", async (req, res)=>{
   res.json({})
 })
 

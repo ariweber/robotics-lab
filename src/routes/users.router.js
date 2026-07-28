@@ -1,15 +1,12 @@
-import express from 'express';
+import express from "express";
+import { validate } from "../middlewares/user.middleware.js";
+import { createUserSchema } from "../validations/users.validation.js";
+import { createUser, getUserById } from "../controllers/users.controller.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/:usersID", async (req, res) => {
-  res.json({})
+router.post("/", validate(createUserSchema), createUser);
 
-})
+router.get("/:userId", getUserById);
 
-
-router.post("/", async (req, res) => {
-  res.json({})
-})
-
-export default router
+export default router;
