@@ -27,9 +27,27 @@ async function getUserByFullName(firstName, lastName) {
   return usersCollection.findOne({ firstName, lastName });
 }
 
+async function addSessionToUser(userId, sessionId) {
+  const result = await usersCollection.updateOne(
+    { _id: new ObjectId(userId) },
+    { $addToSet: { labSessionsIds: String(sessionId) } }
+  );
+  return result.matchedCount > 0;
+}
+
+async function removeSessionFromUser(userId, sessionId) {
+  const result = await usersCollection.updateOne(
+    { _id: new ObjectId(userId) },
+    { $pull: { labSessionsIds: String(sessionId) } }
+  );
+  return result.matchedCount > 0;
+}
+
 export const userRepo = {
   create: createUser,
   getById: getUserById,
   countBySessionId: countUsersBySessionId,
   getByFullName: getUserByFullName,
+  addSessionToUser,
+  removeSessionFromUser,
 };

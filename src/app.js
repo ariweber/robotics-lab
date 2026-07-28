@@ -10,7 +10,10 @@ app.use("/users", usersRouter);
 app.use("/sessions", sessionsRouter);
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({ error: err.message });
+  const body = { error: err.message };                  
+  if (err.remainingSpots !== undefined)
+    body.remainingSpots = err.remainingSpots;          
+  res.status(err.status || 500).json(body);            
 });
 
 const PORT = process.env.PORT || 3000;
