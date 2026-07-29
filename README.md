@@ -48,6 +48,7 @@ robotics-lab/
 | GET    | `/users/:userId`                | Get student details            |
 | POST   | `/sessions/:sessionId/register` | Register a student to a session|
 | GET    | `/sessions/:sessionId`          | Get session details            |
+| GET    | `/sessions`                     | Search sessions (bonus) — `?topic=`, `?capacity=` |
 
 ## Database Choices
 

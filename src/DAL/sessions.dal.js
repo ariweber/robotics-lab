@@ -10,6 +10,15 @@ async function getSessionById(id) {
   return data;
 }
 
+async function searchSessions({ topic, capacity } = {}) {
+  let query = supabase.from("sessions").select("id, topic, dateTime, capacity");
+  if (topic) query = query.ilike("topic", `%${topic}%`);
+  if (capacity) query = query.gte("capacity", capacity);
+  const { data, error } = await query;
+  if (error) throw error;
+  return data;
+}
+
 async function countRegistrations(sessionId) {
   const { data, error } = await supabase
     .from("registrations")
@@ -48,6 +57,7 @@ async function removeRegistration(sessionId, studentId) {
 
 export const sessionRepo = {
   getById: getSessionById,
+  search: searchSessions,
   countRegistrations,
   isRegistered,
   addRegistration,

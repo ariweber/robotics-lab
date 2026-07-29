@@ -13,6 +13,10 @@ export async function getSession(id) {
   };
 }
 
+export async function searchSessions(filters) {
+  return sessionRepo.search(filters);
+}
+
 export async function registerStudent(sessionId, studentId) {
   const user = await userRepo.getById(studentId);
   if (!user) throw createError(404, "Student not found");

@@ -1,8 +1,14 @@
 import express from "express";
-import { getSessionById, register } from "../controllers/sessions.controller.js";
-import { validate, validateParams } from "../middlewares/validate.middleware.js";
-import { sessionIdParamSchema, registerSchema} from "../validations/sessions.validation.js";
+import { getSessionById, register, search } from "../controllers/sessions.controller.js";
+import { validate, validateParams, validateQuery } from "../middlewares/validate.middleware.js";
+import {
+  sessionIdParamSchema,
+  registerSchema,
+  searchSessionsQuerySchema,
+} from "../validations/sessions.validation.js";
 const router = express.Router();
+
+router.get("/", validateQuery(searchSessionsQuerySchema), search);
 
 router.post(
   "/:sessionId/register",

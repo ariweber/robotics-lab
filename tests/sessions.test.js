@@ -1,6 +1,6 @@
 import { test, describe, after } from "node:test";
 import assert from "node:assert";
-import { getSession, registerStudent } from "../src/services/sessions.service.js";
+import { getSession, registerStudent, searchSessions } from "../src/services/sessions.service.js";
 import { sessionRepo } from "../src/DAL/sessions.dal.js";
 import { userRepo } from "../src/DAL/users.dal.js";
 import { client } from "../src/DB/mongoDB.js";
@@ -40,6 +40,20 @@ describe("sessions service - getSession", () => {
       () => getSession(999),
       (err) => err.status === 404
     );
+  });
+});
+
+describe("sessions service - searchSessions", () => {
+  test("passes the filters to the DAL and returns its results", async (t) => {
+    const search = t.mock.method(sessionRepo, "search", async () => [fakeSession]);
+
+    const result = await searchSessions({ topic: "ardu", capacity: 10 });
+
+    assert.deepStrictEqual(result, [fakeSession]);
+    assert.deepStrictEqual(search.mock.calls[0].arguments[0], {
+      topic: "ardu",
+      capacity: 10,
+    });
   });
 });
 

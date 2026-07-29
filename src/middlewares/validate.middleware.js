@@ -23,3 +23,14 @@ export function validateParams(schema) {
     next();
   };
 }
+
+export function validateQuery(schema) {
+  return (req, res, next) => {
+    const result = schema.safeParse(req.query);
+    if (!result.success) {
+      return res.status(400).json({ success: false, message: "invalid query params" });
+    }
+    req.validatedQuery = result.data;
+    next();
+  };
+}

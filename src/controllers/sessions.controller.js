@@ -1,5 +1,14 @@
 
-import { getSession, registerStudent } from "../services/sessions.service.js";
+import { getSession, registerStudent, searchSessions } from "../services/sessions.service.js";
+
+export async function search(req, res, next) {
+  try {
+    const sessions = await searchSessions(req.validatedQuery);
+    res.status(200).json(sessions);
+  } catch (error) {
+    next(error);
+  }
+}
 
 export async function getSessionById(req, res, next) {
   try {
